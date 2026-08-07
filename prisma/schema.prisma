@@ -7,9 +7,18 @@ datasource db {
   provider = "sqlite"
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  createdAt DateTime @default(now())
+model Paint {
+  id          Int      @id @default(autoincrement())
+
+  name        String
+  company     String
+  color       String
+  colorCode   String   @unique
+
+  quarter     Int      @default(0)
+  gallon      Int      @default(0)
+  small       Int      @default(0)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

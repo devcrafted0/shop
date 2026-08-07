@@ -51,7 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  Paint: 'Paint'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -67,14 +67,20 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const UserScalarFieldEnum = {
+export const PaintScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  email: 'email',
-  createdAt: 'createdAt'
+  company: 'company',
+  color: 'color',
+  colorCode: 'colorCode',
+  quarter: 'quarter',
+  gallon: 'gallon',
+  small: 'small',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+export type PaintScalarFieldEnum = (typeof PaintScalarFieldEnum)[keyof typeof PaintScalarFieldEnum]
 
 
 export const SortOrder = {
