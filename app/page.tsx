@@ -1,114 +1,64 @@
-import { createPaint } from "@/actions/add-paint";
+"use client";
+
+import { useEffect, useState } from "react";
+
+type Paint = {
+  id: number;
+  name: string;
+  company: string;
+  color: string;
+  colorCode: string;
+  quarter: number;
+  gallon: number;
+  small: number;
+};
 
 const Page = () => {
+  const [query, setQuery] = useState("");
+  const [paints, setPaints] = useState<Paint[]>([]);
+
+  useEffect(() => {
+    const fetchPaints = async () => {
+      const res = await fetch(
+        `/api/paint/search?query=${encodeURIComponent(query)}`,
+      );
+
+      const data = await res.json();
+
+      setPaints(data);
+    };
+
+    fetchPaints();
+  }, [query]);
+
   return (
-    <div>
-      <form action={createPaint}>
-        <h2>Add Paint</h2>
+    <div className="p-5">
+      <input
+        type="text"
+        placeholder="Search..."
+        className="my-5 border p-2 w-full"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
 
-        <div>
-          <label htmlFor="name">Paint Name</label>
-          <br />
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Enter paint name"
-            required
-          />
-        </div>
+      <div>
+        {paints.map((paint) => (
+          <div key={paint.id} className="border p-3 mb-3">
+            <h2>{paint.name}</h2>
 
-        <br />
+            <p>Company: {paint.company}</p>
 
-        <div>
-          <label htmlFor="company">Company</label>
-          <br />
-          <input
-            type="text"
-            id="company"
-            name="company"
-            placeholder="Enter company name"
-            required
-          />
-        </div>
+            <p>Color: {paint.color}</p>
 
-        <br />
+            <p>Code: {paint.colorCode}</p>
 
-        <div>
-          <label htmlFor="color">Color</label>
-          <br />
-          <input
-            type="text"
-            id="color"
-            name="color"
-            placeholder="Enter color"
-            required
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="colorCode">Color Code</label>
-          <br />
-          <input
-            type="text"
-            id="colorCode"
-            name="colorCode"
-            placeholder="e.g. B-204"
-            required
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="quarter">Quarter Stock</label>
-          <br />
-          <input
-            type="number"
-            id="quarter"
-            name="quarter"
-            min={0}
-            defaultValue={0}
-            required
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="gallon">Gallon Stock</label>
-          <br />
-          <input
-            type="number"
-            id="gallon"
-            name="gallon"
-            min={0}
-            defaultValue={0}
-            required
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="small">Small Stock</label>
-          <br />
-          <input
-            type="number"
-            id="small"
-            name="small"
-            min={0}
-            defaultValue={0}
-            required
-          />
-        </div>
-
-        <br />
-
-        <button type="submit">Add Paint</button>
-      </form>
+            <p>
+              Quarter: {paint.quarter} | Gallon: {paint.gallon} | Small:{" "}
+              {paint.small}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
