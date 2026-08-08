@@ -27,7 +27,7 @@ model Product {
   type       String
   company    String
   name       String
-  code       String   @unique
+  code       String  
   amount     Int      @default(0)
   size       ProductSize @default(FULL)
 
