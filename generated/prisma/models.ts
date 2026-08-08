@@ -9,4 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Product'
+export type * from './models/CustomProduct'
+export type * from './models/ProductType'
+export type * from './models/ProductCompany'
 export type * from './commonInputTypes'

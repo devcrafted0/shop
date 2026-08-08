@@ -46,3 +46,18 @@ export { Prisma }
  * 
  */
 export type Product = Prisma.ProductModel
+/**
+ * Model CustomProduct
+ * 
+ */
+export type CustomProduct = Prisma.CustomProductModel
+/**
+ * Model ProductType
+ * 
+ */
+export type ProductType = Prisma.ProductTypeModel
+/**
+ * Model ProductCompany
+ * 
+ */
+export type ProductCompany = Prisma.ProductCompanyModel

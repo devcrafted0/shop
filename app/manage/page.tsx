@@ -1,6 +1,14 @@
 import { createProduct } from "@/actions/createProduct";
+import CustomProduct from "@/components/Product/CustomProduct";
+import CustomProductCompany from "@/components/Product/CustomProductCompany";
+import CustomProductType from "@/components/Product/CustomProductType";
+import { db } from "@/utils/db";
 
-const Page = () => {
+const Page = async () => {
+  const customProduct = await db.customProduct.findMany();
+  const customProductType = await db.productType.findMany();
+  const customProductCompany = await db.productCompany.findMany();
+
   return (
     <div className="w-full p-7">
       <h1 className="text-3xl font-bold text-center">Manage</h1>
@@ -16,8 +24,9 @@ const Page = () => {
               <label htmlFor="product">Product :</label>
 
               <select name="product" id="product">
-                <option value="Paint">Paint</option>
-                <option value="Cement">Cement</option>
+                {customProduct.map((c) => (
+                  <option value={c.name}>{c.name}</option>
+                ))}
               </select>
             </div>
 
@@ -25,10 +34,9 @@ const Page = () => {
               <label htmlFor="type">Product type :</label>
 
               <select name="type" id="type">
-                <option value="Enamel">Enamel</option>
-                <option value="Weather Sheat">Weather Sheat</option>
-                <option value="Luxury">Luxury</option>
-                <option value="Black Cement">Black Cement</option>
+                {customProductType.map((c) => (
+                  <option value={c.name}>{c.name}</option>
+                ))}
               </select>
             </div>
 
@@ -36,10 +44,9 @@ const Page = () => {
               <label htmlFor="company">Company :</label>
 
               <select name="company" id="company">
-                <option value="Marvel">Marvel</option>
-                <option value="Corona">Corona</option>
-                <option value="Local">Local</option>
-                <option value="Maple Leaf">Maple Leaf</option>
+                {customProductCompany.map((c) => (
+                  <option value={c.name}>{c.name}</option>
+                ))}
               </select>
             </div>
 
@@ -99,6 +106,12 @@ const Page = () => {
             Add Paint
           </button>
         </form>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <CustomProduct />
+        <CustomProductType />
+        <CustomProductCompany />
       </div>
     </div>
   );

@@ -35,6 +35,21 @@ model Product {
   updatedAt   DateTime @updatedAt
 }
 
+model CustomProduct {
+  id         Int      @id @default(autoincrement())
+  name String
+}
+
+model ProductType {
+  id         Int      @id @default(autoincrement())
+  name String
+}
+
+model ProductCompany {
+  id         Int      @id @default(autoincrement())
+  name String
+}
+
 enum ProductSize {
   TINLET
   QUARTER
