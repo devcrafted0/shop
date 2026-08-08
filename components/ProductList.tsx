@@ -22,7 +22,7 @@ const ProductList = () => {
   }, [query]);
 
   return (
-    <form action="" className="border p-5 m-5 rounded flex flex-col">
+    <div className="border p-5 m-5 rounded flex flex-col">
       <input
         type="text"
         placeholder="Search..."
@@ -38,7 +38,7 @@ const ProductList = () => {
           <ProductCard product={p} />
         ))}
       </div>
-    </form>
+    </div>
   );
 };
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Product } from "@/generated/prisma/client";
+import ProductCard from "@/components/ui/ProductCard";
 
 const Page = () => {
   const [query, setQuery] = useState("");
@@ -34,18 +35,9 @@ const Page = () => {
           onChange={(e) => setQuery(e.target.value)}
         />
 
-        <div>
-          {product.map((product) => (
-            <div key={product.id} className="border p-3 mb-3">
-              <h2>{product.name}</h2>
-
-              <p>Company: {product.company}</p>
-              <p>Color: {product.name}</p>
-              <p>Code: {product.code}</p>
-
-              <p>Amount: {product.amount}</p>
-              <p>Size: {product.size}</p>
-            </div>
+        <div className="grid grid-cols-6 gap-5 h-100 overflow-scroll">
+          {product.map((p) => (
+            <ProductCard product={p} key={p.id} />
           ))}
         </div>
 

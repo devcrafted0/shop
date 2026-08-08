@@ -8,7 +8,10 @@ import CustomProductType from "@/components/Product/CustomProductType";
 import ProductList from "@/components/ProductList";
 
 const Page = async () => {
-  const customProduct = await db.customProduct.findMany();
+  const customProduct = await db.customProduct.findMany({
+    take: 1, // Replaces LIMIT ?
+    skip: 1, // Replaces OFFSET ?
+  });
   const customProductType = await db.productType.findMany();
   const customProductCompany = await db.productCompany.findMany();
 

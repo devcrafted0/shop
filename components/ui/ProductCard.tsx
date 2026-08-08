@@ -1,6 +1,18 @@
+"use client";
 import { Product } from "@/generated/prisma/client";
+import { deleteProduct } from "@/actions/deleteProduct";
+import { useState } from "react";
+import { editProduct } from "@/actions/editProduct";
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const reloadPage = () => window.location.reload();
+  const [isEditing, setIsEditing] = useState(false);
+
+  const submitEditForm = (formData: FormData) => {
+    editProduct(formData);
+    reloadPage();
+  };
+
   return (
     <div className="group rounded-2xl border bg-white p-5 ">
       {/* Header */}
@@ -47,9 +59,26 @@ const ProductCard = ({ product }: { product: Product }) => {
 
         <div className="p-3 border">
           <p className="text-xs text-gray-400">Amount</p>
-          <p className="mt-1 text-sm font-semibold text-gray-900">
-            {product.amount}
-          </p>
+          {isEditing ? (
+            <form
+              action={submitEditForm}
+              className="mt-1 flex items-center gap-2"
+            >
+              <input type="hidden" name="id" value={product.id} />
+
+              <input
+                type="number"
+                name="amount"
+                min={0}
+                defaultValue={product.amount}
+                className="w-20 rounded-md border border-gray-300 px-2 py-1 text-sm font-semibold outline-none focus:border-gray-500"
+              />
+            </form>
+          ) : (
+            <p className="mt-1 text-sm font-semibold text-gray-900">
+              {product.amount}
+            </p>
+          )}
         </div>
 
         <div className="p-3 border">
@@ -62,14 +91,21 @@ const ProductCard = ({ product }: { product: Product }) => {
 
       {/* Footer */}
       <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
-        <span className="text-xs text-gray-400">Product ID: #{product.id}</span>
-
         <button
           type="button"
-          className="rounded-lg px-3 py-1.5 text-sm font-medium text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+          onClick={() => setIsEditing((prev) => !prev)}
+          className="cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
         >
-          View Details
+          {isEditing ? "Cancel" : "Edit"}
         </button>
+
+        <form action={deleteProduct}>
+          <input type="hidden" name="id" value={product.id} />
+
+          <button type="submit" className="cursor-pointer" onClick={reloadPage}>
+            Delete
+          </button>
+        </form>
       </div>
     </div>
   );
