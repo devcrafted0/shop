@@ -1,8 +1,9 @@
 import { createProduct } from "@/actions/createProduct";
+import { db } from "@/utils/db";
+
 import CustomProduct from "@/components/Product/CustomProduct";
 import CustomProductCompany from "@/components/Product/CustomProductCompany";
 import CustomProductType from "@/components/Product/CustomProductType";
-import { db } from "@/utils/db";
 
 const Page = async () => {
   const customProduct = await db.customProduct.findMany();
@@ -12,6 +13,7 @@ const Page = async () => {
   return (
     <div className="w-full p-7">
       <h1 className="text-3xl font-bold text-center">Manage</h1>
+
       <div className="w-full grid grid-cols-2">
         <form
           action={createProduct}
@@ -25,7 +27,9 @@ const Page = async () => {
 
               <select name="product" id="product">
                 {customProduct.map((c) => (
-                  <option value={c.name}>{c.name}</option>
+                  <option value={c.name} key={`${c.id}`}>
+                    {c.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -35,7 +39,9 @@ const Page = async () => {
 
               <select name="type" id="type">
                 {customProductType.map((c) => (
-                  <option value={c.name}>{c.name}</option>
+                  <option value={c.name} key={`${c.id}`}>
+                    {c.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -45,7 +51,9 @@ const Page = async () => {
 
               <select name="company" id="company">
                 {customProductCompany.map((c) => (
-                  <option value={c.name}>{c.name}</option>
+                  <option value={c.name} key={`${c.id}`}>
+                    {c.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -108,10 +116,10 @@ const Page = async () => {
         </form>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <CustomProduct />
-        <CustomProductType />
-        <CustomProductCompany />
+      <div className="grid grid-cols-3">
+        <CustomProduct data={customProduct} />
+        <CustomProductType data={customProductType} />
+        <CustomProductCompany data={customProductCompany} />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 "use server";
 import { db } from "@/utils/db";
+import { revalidatePath } from "next/cache";
 
 export async function createProduct(formData: FormData) {
   await db.product.create({
@@ -18,4 +19,5 @@ export async function createProduct(formData: FormData) {
         | "FULL",
     },
   });
+  revalidatePath("/manage");
 }

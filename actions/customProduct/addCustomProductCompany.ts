@@ -1,5 +1,6 @@
 "use server";
 import { db } from "@/utils/db";
+import { revalidatePath } from "next/cache";
 
 const addCustomProductCompany = async (formData: FormData) => {
   const customProduct = formData.get("customProductCompany") as string;
@@ -9,6 +10,7 @@ const addCustomProductCompany = async (formData: FormData) => {
       name: customProduct,
     },
   });
+  revalidatePath("/manage");
 };
 
 export default addCustomProductCompany;
