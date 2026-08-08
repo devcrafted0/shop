@@ -1,4 +1,4 @@
-import { createPaint } from "@/actions/add-paint";
+import { createProduct } from "@/actions/createProduct";
 
 const Page = () => {
   return (
@@ -6,58 +6,63 @@ const Page = () => {
       <h1 className="text-3xl font-bold text-center">Manage</h1>
       <div className="w-full grid grid-cols-2">
         <form
-          action={createPaint}
+          action={createProduct}
           className="border p-5 m-5 rounded text-center"
         >
-          <h2 className="text-xl font-bold text-center my-4">Add Paint</h2>
+          <h2 className="text-xl font-bold text-center my-4">Add Product</h2>
 
           <div className="w-full flex flex-col gap-2">
             <div className="flex gap-4 items-center ">
-              <label htmlFor="name">Paint Name :</label>
+              <label htmlFor="product">Product :</label>
 
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter paint name"
-                required
-                className="border p-2 rounded"
-              />
+              <select name="product" id="product">
+                <option value="Paint">Paint</option>
+                <option value="Cement">Cement</option>
+              </select>
+            </div>
+
+            <div className="flex gap-4 items-center ">
+              <label htmlFor="type">Product type :</label>
+
+              <select name="type" id="type">
+                <option value="Enamel">Enamel</option>
+                <option value="Weather Sheat">Weather Sheat</option>
+                <option value="Luxury">Luxury</option>
+                <option value="Black Cement">Black Cement</option>
+              </select>
             </div>
 
             <div className="flex gap-4 items-center">
               <label htmlFor="company">Company :</label>
 
+              <select name="company" id="company">
+                <option value="Marvel">Marvel</option>
+                <option value="Corona">Corona</option>
+                <option value="Local">Local</option>
+                <option value="Maple Leaf">Maple Leaf</option>
+              </select>
+            </div>
+
+            <div className="flex gap-4 items-center">
+              <label htmlFor="name">Name :</label>
+
               <input
                 type="text"
-                id="company"
-                name="company"
-                placeholder="Enter company name"
+                id="name"
+                name="name"
+                placeholder="Enter Name"
                 required
                 className="border p-2 rounded"
               />
             </div>
 
             <div className="flex gap-4 items-center">
-              <label htmlFor="color">Color :</label>
+              <label htmlFor="code">code :</label>
 
               <input
                 type="text"
-                id="color"
-                name="color"
-                placeholder="Enter color"
-                required
-                className="border p-2 rounded"
-              />
-            </div>
-
-            <div className="flex gap-4 items-center">
-              <label htmlFor="colorCode">Color Code :</label>
-
-              <input
-                type="text"
-                id="colorCode"
-                name="colorCode"
+                id="code"
+                name="code"
                 placeholder="e.g. B-204"
                 required
                 className="border p-2 rounded"
@@ -65,12 +70,12 @@ const Page = () => {
             </div>
 
             <div className="flex gap-4 items-center">
-              <label htmlFor="quarter">Quarter Stock :</label>
+              <label htmlFor="amount">Amount :</label>
 
               <input
                 type="number"
-                id="quarter"
-                name="quarter"
+                id="amount"
+                name="amount"
                 min={0}
                 defaultValue={0}
                 required
@@ -79,37 +84,18 @@ const Page = () => {
             </div>
 
             <div className="flex gap-4 items-center">
-              <label htmlFor="gallon">Gallon Stock :</label>
+              <label htmlFor="size">Size :</label>
 
-              <input
-                type="number"
-                id="gallon"
-                name="gallon"
-                min={0}
-                defaultValue={0}
-                required
-                className="border p-2 rounded"
-              />
-            </div>
-
-            <div className="flex gap-4 items-center">
-              <label htmlFor="small">Tinlet Stock :</label>
-
-              <input
-                type="number"
-                id="small"
-                name="small"
-                min={0}
-                defaultValue={0}
-                required
-                className="border p-2 rounded"
-              />
+              <select name="size" id="size">
+                <option value="TINLET">TINLET</option>
+                <option value="QUARTER">QUARTER</option>
+                <option value="GALLON">GALLON</option>
+                <option value="DRUM">DRUM</option>
+                <option value="FULL">FULL</option>
+              </select>
             </div>
           </div>
-          <button
-            type="submit"
-            className="border-2 p-2 my-5 cursor-pointer hover:text-white hover:bg-black"
-          >
+          <button type="submit" className="p-2 my-5">
             Add Paint
           </button>
         </form>

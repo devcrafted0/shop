@@ -10,11 +10,13 @@ export async function GET(req: Request) {
     return NextResponse.json([]);
   }
 
-  const paints = await db.paint.findMany({
+  console.log(query);
+
+  const product = await db.product.findMany({
     where: {
       OR: [
         {
-          name: {
+          type: {
             contains: query,
           },
         },
@@ -24,12 +26,12 @@ export async function GET(req: Request) {
           },
         },
         {
-          color: {
+          name: {
             contains: query,
           },
         },
         {
-          colorCode: {
+          code: {
             contains: query,
           },
         },
@@ -40,5 +42,5 @@ export async function GET(req: Request) {
     },
   });
 
-  return NextResponse.json(paints);
+  return NextResponse.json(product);
 }

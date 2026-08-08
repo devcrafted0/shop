@@ -7,18 +7,38 @@ datasource db {
   provider = "sqlite"
 }
 
-model Paint {
-  id          Int      @id @default(autoincrement())
+/* PRODUCTS :- 
 
-  name        String
-  company     String
-  color       String
-  colorCode   String   @unique
+PRODUCT (PAINT , CEMENET )
+PRODUCT TYPE (ENAMEL , WEATHER SHEAT , BLACK CEMENT (WHITE CEMENT))
+PRODUCT COMPANY (MARVEL , MAPLE LEAF)
+PRODUCT NAME (Eg:- Black , White)
 
-  quarter     Int      @default(0)
-  gallon      Int      @default(0)
-  small       Int      @default(0)
+PRODUCT Code ( COLOR CODE :- 111 ,  99999)
+PRODUCT AMOUNT (1)
+PRODUCT SIZE (TINLET , QUARTER , GALLON , DRUM , FULL)
+
+*/
+
+model Product {
+  id         Int      @id @default(autoincrement())
+
+  product    String
+  type       String
+  company    String
+  name       String
+  code       String   @unique
+  amount     Int      @default(0)
+  size       ProductSize @default(FULL)
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+enum ProductSize {
+  TINLET
+  QUARTER
+  GALLON
+  DRUM
+  FULL
 }

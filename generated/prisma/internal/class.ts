@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.9.1",
   "engineVersion": "e922089b7d7502aff4249d5da3420f6fa55fc6ad",
   "activeProvider": "sqlite",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel Paint {\n  id Int @id @default(autoincrement())\n\n  name      String\n  company   String\n  color     String\n  colorCode String @unique\n\n  quarter Int @default(0)\n  gallon  Int @default(0)\n  small   Int @default(0)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\n/**\n * PRODUCTS :-\n * PRODUCT (PAINT , CEMENET )\n * PRODUCT TYPE (ENAMEL , WEATHER SHEAT , BLACK CEMENT (WHITE CEMENT))\n * PRODUCT COMPANY (MARVEL , MAPLE LEAF)\n * PRODUCT NAME (Eg:- Black , White)\n * PRODUCT Code ( COLOR CODE :- 111 ,  99999)\n * PRODUCT AMOUNT (1)\n * PRODUCT SIZE (TINLET , QUARTER , GALLON , DRUM , FULL)\n */\n\nmodel Product {\n  id Int @id @default(autoincrement())\n\n  product String\n  type    String\n  company String\n  name    String\n  code    String      @unique\n  amount  Int         @default(0)\n  size    ProductSize @default(FULL)\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nenum ProductSize {\n  TINLET\n  QUARTER\n  GALLON\n  DRUM\n  FULL\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,10 +32,10 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Paint\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"company\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"color\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"colorCode\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"quarter\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"gallon\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"small\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Product\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"product\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"company\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"code\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"amount\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"size\",\"kind\":\"enum\",\"type\":\"ProductSize\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[\"where\",\"Paint.findUnique\",\"Paint.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Paint.findFirst\",\"Paint.findFirstOrThrow\",\"Paint.findMany\",\"data\",\"Paint.createOne\",\"Paint.createMany\",\"Paint.createManyAndReturn\",\"Paint.updateOne\",\"Paint.updateMany\",\"Paint.updateManyAndReturn\",\"create\",\"update\",\"Paint.upsertOne\",\"Paint.deleteOne\",\"Paint.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Paint.groupBy\",\"Paint.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"name\",\"company\",\"color\",\"colorCode\",\"quarter\",\"gallon\",\"small\",\"createdAt\",\"updatedAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
-  graph: "MAsQDRwAACUAMB0AAAQAEB4AACUAMB8CAAAAASABACcAISEBACcAISIBACcAISMBAAAAASQCACYAISUCACYAISYCACYAISdAACgAIShAACgAIQEAAAABACABAAAAAQAgDRwAACUAMB0AAAQAEB4AACUAMB8CACYAISABACcAISEBACcAISIBACcAISMBACcAISQCACYAISUCACYAISYCACYAISdAACgAIShAACgAIQADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAKHwIAAAABIAEAAAABIQEAAAABIgEAAAABIwEAAAABJAIAAAABJQIAAAABJgIAAAABJ0AAAAABKEAAAAABAQgAAAkAIAofAgAAAAEgAQAAAAEhAQAAAAEiAQAAAAEjAQAAAAEkAgAAAAElAgAAAAEmAgAAAAEnQAAAAAEoQAAAAAEBCAAACwAwAQgAAAsAMAofAgAvACEgAQAuACEhAQAuACEiAQAuACEjAQAuACEkAgAvACElAgAvACEmAgAvACEnQAAwACEoQAAwACECAAAAAQAgCAAADgAgCh8CAC8AISABAC4AISEBAC4AISIBAC4AISMBAC4AISQCAC8AISUCAC8AISYCAC8AISdAADAAIShAADAAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBRUAACkAIBYAACoAIBcAAC0AIBgAACwAIBkAACsAIA0cAAAaADAdAAAXABAeAAAaADAfAgAbACEgAQAcACEhAQAcACEiAQAcACEjAQAcACEkAgAbACElAgAbACEmAgAbACEnQAAdACEoQAAdACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIA0cAAAaADAdAAAXABAeAAAaADAfAgAbACEgAQAcACEhAQAcACEiAQAcACEjAQAcACEkAgAbACElAgAbACEmAgAbACEnQAAdACEoQAAdACENFQAAHwAgFgAAJAAgFwAAHwAgGAAAHwAgGQAAHwAgKQIAAAABKgIAAAAEKwIAAAAELAIAAAABLQIAAAABLgIAAAABLwIAAAABMAIAIwAhDhUAAB8AIBgAACIAIBkAACIAICkBAAAAASoBAAAABCsBAAAABCwBAAAAAS0BAAAAAS4BAAAAAS8BAAAAATABACEAITEBAAAAATIBAAAAATMBAAAAAQsVAAAfACAYAAAgACAZAAAgACApQAAAAAEqQAAAAAQrQAAAAAQsQAAAAAEtQAAAAAEuQAAAAAEvQAAAAAEwQAAeACELFQAAHwAgGAAAIAAgGQAAIAAgKUAAAAABKkAAAAAEK0AAAAAELEAAAAABLUAAAAABLkAAAAABL0AAAAABMEAAHgAhCCkCAAAAASoCAAAABCsCAAAABCwCAAAAAS0CAAAAAS4CAAAAAS8CAAAAATACAB8AIQgpQAAAAAEqQAAAAAQrQAAAAAQsQAAAAAEtQAAAAAEuQAAAAAEvQAAAAAEwQAAgACEOFQAAHwAgGAAAIgAgGQAAIgAgKQEAAAABKgEAAAAEKwEAAAAELAEAAAABLQEAAAABLgEAAAABLwEAAAABMAEAIQAhMQEAAAABMgEAAAABMwEAAAABCykBAAAAASoBAAAABCsBAAAABCwBAAAAAS0BAAAAAS4BAAAAAS8BAAAAATABACIAITEBAAAAATIBAAAAATMBAAAAAQ0VAAAfACAWAAAkACAXAAAfACAYAAAfACAZAAAfACApAgAAAAEqAgAAAAQrAgAAAAQsAgAAAAEtAgAAAAEuAgAAAAEvAgAAAAEwAgAjACEIKQgAAAABKggAAAAEKwgAAAAELAgAAAABLQgAAAABLggAAAABLwgAAAABMAgAJAAhDRwAACUAMB0AAAQAEB4AACUAMB8CACYAISABACcAISEBACcAISIBACcAISMBACcAISQCACYAISUCACYAISYCACYAISdAACgAIShAACgAIQgpAgAAAAEqAgAAAAQrAgAAAAQsAgAAAAEtAgAAAAEuAgAAAAEvAgAAAAEwAgAfACELKQEAAAABKgEAAAAEKwEAAAAELAEAAAABLQEAAAABLgEAAAABLwEAAAABMAEAIgAhMQEAAAABMgEAAAABMwEAAAABCClAAAAAASpAAAAABCtAAAAABCxAAAAAAS1AAAAAAS5AAAAAAS9AAAAAATBAACAAIQAAAAAAATQBAAAAAQU0AgAAAAE1AgAAAAE2AgAAAAE3AgAAAAE4AgAAAAEBNEAAAAABAAAAAAUVAAYWAAcXAAgYAAkZAAoAAAAAAAUVAAYWAAcXAAgYAAkZAAoBAgECAwEFBgEGBwEHCAEJCgEKDAILDQMMDwENEQIOEgQREwESFAETFQIaGAUbGQs"
+  strings: JSON.parse("[\"where\",\"Product.findUnique\",\"Product.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Product.findFirst\",\"Product.findFirstOrThrow\",\"Product.findMany\",\"data\",\"Product.createOne\",\"Product.createMany\",\"Product.createManyAndReturn\",\"Product.updateOne\",\"Product.updateMany\",\"Product.updateManyAndReturn\",\"create\",\"update\",\"Product.upsertOne\",\"Product.deleteOne\",\"Product.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Product.groupBy\",\"Product.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"product\",\"type\",\"company\",\"name\",\"code\",\"amount\",\"ProductSize\",\"size\",\"createdAt\",\"updatedAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+  graph: "NQsQDRwAACgAMB0AAAQAEB4AACgAMB8CAAAAASABACoAISEBACoAISIBACoAISMBACoAISQBAAAAASUCACkAIScAACsnIihAACwAISlAACwAIQEAAAABACABAAAAAQAgDRwAACgAMB0AAAQAEB4AACgAMB8CACkAISABACoAISEBACoAISIBACoAISMBACoAISQBACoAISUCACkAIScAACsnIihAACwAISlAACwAIQADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAKHwIAAAABIAEAAAABIQEAAAABIgEAAAABIwEAAAABJAEAAAABJQIAAAABJwAAACcCKEAAAAABKUAAAAABAQgAAAkAIAofAgAAAAEgAQAAAAEhAQAAAAEiAQAAAAEjAQAAAAEkAQAAAAElAgAAAAEnAAAAJwIoQAAAAAEpQAAAAAEBCAAACwAwAQgAAAsAMAofAgAzACEgAQAyACEhAQAyACEiAQAyACEjAQAyACEkAQAyACElAgAzACEnAAA0JyIoQAA1ACEpQAA1ACECAAAAAQAgCAAADgAgCh8CADMAISABADIAISEBADIAISIBADIAISMBADIAISQBADIAISUCADMAIScAADQnIihAADUAISlAADUAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBRUAAC0AIBYAAC4AIBcAADEAIBgAADAAIBkAAC8AIA0cAAAaADAdAAAXABAeAAAaADAfAgAbACEgAQAcACEhAQAcACEiAQAcACEjAQAcACEkAQAcACElAgAbACEnAAAdJyIoQAAeACEpQAAeACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIA0cAAAaADAdAAAXABAeAAAaADAfAgAbACEgAQAcACEhAQAcACEiAQAcACEjAQAcACEkAQAcACElAgAbACEnAAAdJyIoQAAeACEpQAAeACENFQAAIAAgFgAAJwAgFwAAIAAgGAAAIAAgGQAAIAAgKgIAAAABKwIAAAAELAIAAAAELQIAAAABLgIAAAABLwIAAAABMAIAAAABMQIAJgAhDhUAACAAIBgAACUAIBkAACUAICoBAAAAASsBAAAABCwBAAAABC0BAAAAAS4BAAAAAS8BAAAAATABAAAAATEBACQAITIBAAAAATMBAAAAATQBAAAAAQcVAAAgACAYAAAjACAZAAAjACAqAAAAJwIrAAAAJwgsAAAAJwgxAAAiJyILFQAAIAAgGAAAIQAgGQAAIQAgKkAAAAABK0AAAAAELEAAAAAELUAAAAABLkAAAAABL0AAAAABMEAAAAABMUAAHwAhCxUAACAAIBgAACEAIBkAACEAICpAAAAAAStAAAAABCxAAAAABC1AAAAAAS5AAAAAAS9AAAAAATBAAAAAATFAAB8AIQgqAgAAAAErAgAAAAQsAgAAAAQtAgAAAAEuAgAAAAEvAgAAAAEwAgAAAAExAgAgACEIKkAAAAABK0AAAAAELEAAAAAELUAAAAABLkAAAAABL0AAAAABMEAAAAABMUAAIQAhBxUAACAAIBgAACMAIBkAACMAICoAAAAnAisAAAAnCCwAAAAnCDEAACInIgQqAAAAJwIrAAAAJwgsAAAAJwgxAAAjJyIOFQAAIAAgGAAAJQAgGQAAJQAgKgEAAAABKwEAAAAELAEAAAAELQEAAAABLgEAAAABLwEAAAABMAEAAAABMQEAJAAhMgEAAAABMwEAAAABNAEAAAABCyoBAAAAASsBAAAABCwBAAAABC0BAAAAAS4BAAAAAS8BAAAAATABAAAAATEBACUAITIBAAAAATMBAAAAATQBAAAAAQ0VAAAgACAWAAAnACAXAAAgACAYAAAgACAZAAAgACAqAgAAAAErAgAAAAQsAgAAAAQtAgAAAAEuAgAAAAEvAgAAAAEwAgAAAAExAgAmACEIKggAAAABKwgAAAAELAgAAAAELQgAAAABLggAAAABLwgAAAABMAgAAAABMQgAJwAhDRwAACgAMB0AAAQAEB4AACgAMB8CACkAISABACoAISEBACoAISIBACoAISMBACoAISQBACoAISUCACkAIScAACsnIihAACwAISlAACwAIQgqAgAAAAErAgAAAAQsAgAAAAQtAgAAAAEuAgAAAAEvAgAAAAEwAgAAAAExAgAgACELKgEAAAABKwEAAAAELAEAAAAELQEAAAABLgEAAAABLwEAAAABMAEAAAABMQEAJQAhMgEAAAABMwEAAAABNAEAAAABBCoAAAAnAisAAAAnCCwAAAAnCDEAACMnIggqQAAAAAErQAAAAAQsQAAAAAQtQAAAAAEuQAAAAAEvQAAAAAEwQAAAAAExQAAhACEAAAAAAAE1AQAAAAEFNQIAAAABNgIAAAABNwIAAAABOAIAAAABOQIAAAABATUAAAAnAgE1QAAAAAEAAAAABRUABhYABxcACBgACRkACgAAAAAABRUABhYABxcACBgACRkACgECAQIDAQUGAQYHAQcIAQkKAQoMAgsNAwwPAQ0RAg4SBBETARIUARMVAhoYBRsZCw"
 }
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -70,8 +70,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Paints
-   * const paints = await prisma.paint.findMany()
+   * // Fetch zero or more Products
+   * const products = await prisma.product.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -94,8 +94,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Paints
- * const paints = await prisma.paint.findMany()
+ * // Fetch zero or more Products
+ * const products = await prisma.product.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -189,14 +189,14 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.paint`: Exposes CRUD operations for the **Paint** model.
+   * `prisma.product`: Exposes CRUD operations for the **Product** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Paints
-    * const paints = await prisma.paint.findMany()
+    * // Fetch zero or more Products
+    * const products = await prisma.product.findMany()
     * ```
     */
-  get paint(): Prisma.PaintDelegate<ExtArgs, { omit: OmitOpts }>;
+  get product(): Prisma.ProductDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

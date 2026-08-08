@@ -8,5 +8,5 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Paint'
+export type * from './models/Product'
 export type * from './commonInputTypes'

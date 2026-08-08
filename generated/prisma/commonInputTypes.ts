@@ -39,6 +39,13 @@ export type StringFilter<$PrismaModel = never> = {
   not?: Prisma.NestedStringFilter<$PrismaModel> | string
 }
 
+export type EnumProductSizeFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProductSize | Prisma.EnumProductSizeFieldRefInput<$PrismaModel>
+  in?: $Enums.ProductSize[]
+  notIn?: $Enums.ProductSize[]
+  not?: Prisma.NestedEnumProductSizeFilter<$PrismaModel> | $Enums.ProductSize
+}
+
 export type DateTimeFilter<$PrismaModel = never> = {
   equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
   in?: Date[] | string[]
@@ -83,6 +90,16 @@ export type StringWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedStringFilter<$PrismaModel>
 }
 
+export type EnumProductSizeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProductSize | Prisma.EnumProductSizeFieldRefInput<$PrismaModel>
+  in?: $Enums.ProductSize[]
+  notIn?: $Enums.ProductSize[]
+  not?: Prisma.NestedEnumProductSizeWithAggregatesFilter<$PrismaModel> | $Enums.ProductSize
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumProductSizeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumProductSizeFilter<$PrismaModel>
+}
+
 export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
   equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
   in?: Date[] | string[]
@@ -120,6 +137,13 @@ export type NestedStringFilter<$PrismaModel = never> = {
   startsWith?: string | Prisma.StringFieldRefInput<$PrismaModel>
   endsWith?: string | Prisma.StringFieldRefInput<$PrismaModel>
   not?: Prisma.NestedStringFilter<$PrismaModel> | string
+}
+
+export type NestedEnumProductSizeFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProductSize | Prisma.EnumProductSizeFieldRefInput<$PrismaModel>
+  in?: $Enums.ProductSize[]
+  notIn?: $Enums.ProductSize[]
+  not?: Prisma.NestedEnumProductSizeFilter<$PrismaModel> | $Enums.ProductSize
 }
 
 export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -175,6 +199,16 @@ export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedStringFilter<$PrismaModel>
   _max?: Prisma.NestedStringFilter<$PrismaModel>
+}
+
+export type NestedEnumProductSizeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ProductSize | Prisma.EnumProductSizeFieldRefInput<$PrismaModel>
+  in?: $Enums.ProductSize[]
+  notIn?: $Enums.ProductSize[]
+  not?: Prisma.NestedEnumProductSizeWithAggregatesFilter<$PrismaModel> | $Enums.ProductSize
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumProductSizeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumProductSizeFilter<$PrismaModel>
 }
 
 export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
