@@ -14,7 +14,7 @@ const ProductCard = ({ product }: { product: Product }) => {
   };
 
   return (
-    <div className="group rounded-2xl border bg-white p-5 ">
+    <div className="group border bg-white p-5 ">
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
