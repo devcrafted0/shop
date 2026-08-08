@@ -5,6 +5,8 @@ import CustomProduct from "@/components/Product/CustomProduct";
 import CustomProductCompany from "@/components/Product/CustomProductCompany";
 import CustomProductType from "@/components/Product/CustomProductType";
 
+import ProductList from "@/components/ProductList";
+
 const Page = async () => {
   const customProduct = await db.customProduct.findMany();
   const customProductType = await db.productType.findMany();
@@ -114,6 +116,8 @@ const Page = async () => {
             Add Paint
           </button>
         </form>
+
+        <ProductList />
       </div>
 
       <div className="grid grid-cols-3">
