@@ -17,6 +17,7 @@ export async function createProduct(formData: FormData) {
         | "GALLON"
         | "DRUM"
         | "FULL",
+      actualPrice: Number(formData.get("actualPrice")),
     },
   });
   revalidatePath("/manage");

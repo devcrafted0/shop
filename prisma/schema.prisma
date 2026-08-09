@@ -30,6 +30,7 @@ model Product {
   code       String  
   amount     Int      @default(0)
   size       ProductSize @default(FULL)
+  actualPrice Float
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -62,6 +63,7 @@ model Invoice {
   id          Int      @id @default(autoincrement())
   description String
   products    Json
+  sellPrice   Int
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

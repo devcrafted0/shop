@@ -28,15 +28,18 @@ export type AggregateInvoice = {
 
 export type InvoiceAvgAggregateOutputType = {
   id: number | null
+  sellPrice: number | null
 }
 
 export type InvoiceSumAggregateOutputType = {
   id: number | null
+  sellPrice: number | null
 }
 
 export type InvoiceMinAggregateOutputType = {
   id: number | null
   description: string | null
+  sellPrice: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,6 +47,7 @@ export type InvoiceMinAggregateOutputType = {
 export type InvoiceMaxAggregateOutputType = {
   id: number | null
   description: string | null
+  sellPrice: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -52,6 +56,7 @@ export type InvoiceCountAggregateOutputType = {
   id: number
   description: number
   products: number
+  sellPrice: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -60,15 +65,18 @@ export type InvoiceCountAggregateOutputType = {
 
 export type InvoiceAvgAggregateInputType = {
   id?: true
+  sellPrice?: true
 }
 
 export type InvoiceSumAggregateInputType = {
   id?: true
+  sellPrice?: true
 }
 
 export type InvoiceMinAggregateInputType = {
   id?: true
   description?: true
+  sellPrice?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -76,6 +84,7 @@ export type InvoiceMinAggregateInputType = {
 export type InvoiceMaxAggregateInputType = {
   id?: true
   description?: true
+  sellPrice?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -84,6 +93,7 @@ export type InvoiceCountAggregateInputType = {
   id?: true
   description?: true
   products?: true
+  sellPrice?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -179,6 +189,7 @@ export type InvoiceGroupByOutputType = {
   id: number
   description: string
   products: runtime.JsonValue
+  sellPrice: number
   createdAt: Date
   updatedAt: Date
   _count: InvoiceCountAggregateOutputType | null
@@ -210,6 +221,7 @@ export type InvoiceWhereInput = {
   id?: Prisma.IntFilter<"Invoice"> | number
   description?: Prisma.StringFilter<"Invoice"> | string
   products?: Prisma.JsonFilter<"Invoice">
+  sellPrice?: Prisma.IntFilter<"Invoice"> | number
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
 }
@@ -218,6 +230,7 @@ export type InvoiceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   products?: Prisma.SortOrder
+  sellPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -229,6 +242,7 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
   description?: Prisma.StringFilter<"Invoice"> | string
   products?: Prisma.JsonFilter<"Invoice">
+  sellPrice?: Prisma.IntFilter<"Invoice"> | number
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
 }, "id">
@@ -237,6 +251,7 @@ export type InvoiceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   products?: Prisma.SortOrder
+  sellPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.InvoiceCountOrderByAggregateInput
@@ -253,6 +268,7 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
   description?: Prisma.StringWithAggregatesFilter<"Invoice"> | string
   products?: Prisma.JsonWithAggregatesFilter<"Invoice">
+  sellPrice?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
 }
@@ -260,6 +276,7 @@ export type InvoiceScalarWhereWithAggregatesInput = {
 export type InvoiceCreateInput = {
   description: string
   products: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sellPrice: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -268,6 +285,7 @@ export type InvoiceUncheckedCreateInput = {
   id?: number
   description: string
   products: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sellPrice: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -275,6 +293,7 @@ export type InvoiceUncheckedCreateInput = {
 export type InvoiceUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   products?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sellPrice?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -283,6 +302,7 @@ export type InvoiceUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   products?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sellPrice?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -291,6 +311,7 @@ export type InvoiceCreateManyInput = {
   id?: number
   description: string
   products: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sellPrice: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -298,6 +319,7 @@ export type InvoiceCreateManyInput = {
 export type InvoiceUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   products?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sellPrice?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -306,6 +328,7 @@ export type InvoiceUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   products?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  sellPrice?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -314,17 +337,20 @@ export type InvoiceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   products?: Prisma.SortOrder
+  sellPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type InvoiceAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  sellPrice?: Prisma.SortOrder
 }
 
 export type InvoiceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  sellPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -332,12 +358,14 @@ export type InvoiceMaxOrderByAggregateInput = {
 export type InvoiceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  sellPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type InvoiceSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  sellPrice?: Prisma.SortOrder
 }
 
 
@@ -346,6 +374,7 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   description?: boolean
   products?: boolean
+  sellPrice?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["invoice"]>
@@ -354,6 +383,7 @@ export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   description?: boolean
   products?: boolean
+  sellPrice?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["invoice"]>
@@ -362,6 +392,7 @@ export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   description?: boolean
   products?: boolean
+  sellPrice?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["invoice"]>
@@ -370,11 +401,12 @@ export type InvoiceSelectScalar = {
   id?: boolean
   description?: boolean
   products?: boolean
+  sellPrice?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "products" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
+export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "products" | "sellPrice" | "createdAt" | "updatedAt", ExtArgs["result"]["invoice"]>
 
 export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Invoice"
@@ -383,6 +415,7 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: number
     description: string
     products: runtime.JsonValue
+    sellPrice: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["invoice"]>
@@ -811,6 +844,7 @@ export interface InvoiceFieldRefs {
   readonly id: Prisma.FieldRef<"Invoice", 'Int'>
   readonly description: Prisma.FieldRef<"Invoice", 'String'>
   readonly products: Prisma.FieldRef<"Invoice", 'Json'>
+  readonly sellPrice: Prisma.FieldRef<"Invoice", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Invoice", 'DateTime'>
 }

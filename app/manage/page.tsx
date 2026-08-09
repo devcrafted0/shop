@@ -102,6 +102,20 @@ const Page = async () => {
             </div>
 
             <div className="flex gap-4 items-center">
+              <label htmlFor="actualPrice">Actual Price :</label>
+
+              <input
+                type="number"
+                id="actualPrice"
+                name="actualPrice"
+                min={0}
+                defaultValue={0}
+                required
+                className="border p-2 rounded"
+              />
+            </div>
+
+            <div className="flex gap-4 items-center">
               <label htmlFor="size">Size :</label>
 
               <select name="size" id="size">

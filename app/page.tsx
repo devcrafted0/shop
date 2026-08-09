@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Product } from "@/generated/prisma/client";
 import Card from "@/components/ui/Card";
 import CompanyPayment from "@/components/CompanyPayment";
+import Invoice from "@/components/Invoice";
 
 const Page = () => {
   const [query, setQuery] = useState("");
@@ -27,27 +28,29 @@ const Page = () => {
   return (
     <div className="grid grid-cols-[1fr_5fr_1fr] p-4 h-screen">
       <CompanyPayment />
+      <div className="p-5">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="my-5 border p-2 w-full"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
 
-      <div className="p-5 relative">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="my-5 border p-2 w-full"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-
-        <div className="grid h-70 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-x-hidden overflow-y-auto">
-          {product.map((p) => (
-            <Card product={p} key={p.id} />
-          ))}
+          <div className="grid h-70 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-x-hidden overflow-y-auto">
+            {product.map((p) => (
+              <Card product={p} key={p.id} />
+            ))}
+          </div>
+          <Link
+            href="/manage"
+            className="absolute -top-5 right-10 font-semibold text-lg"
+          >
+            Manage
+          </Link>
         </div>
-        <Link
-          href="/manage"
-          className="absolute top-0 right-10 font-semibold text-lg"
-        >
-          Manage
-        </Link>
+        <Invoice />
       </div>
 
       <div className="border h-full">

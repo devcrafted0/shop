@@ -986,6 +986,7 @@ export const ProductScalarFieldEnum = {
   code: 'code',
   amount: 'amount',
   size: 'size',
+  actualPrice: 'actualPrice',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1021,6 +1022,7 @@ export const InvoiceScalarFieldEnum = {
   id: 'id',
   description: 'description',
   products: 'products',
+  sellPrice: 'sellPrice',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1123,6 +1125,13 @@ export type EnumProductSizeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pris
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -1147,13 +1156,6 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
  * Reference to a field of type 'CreditTransactionType'
  */
 export type EnumCreditTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CreditTransactionType'>
-    
-
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 /**
