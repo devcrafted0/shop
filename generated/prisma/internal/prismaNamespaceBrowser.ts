@@ -56,7 +56,8 @@ export const ModelName = {
   ProductType: 'ProductType',
   ProductCompany: 'ProductCompany',
   Invoice: 'Invoice',
-  CompanyPayment: 'CompanyPayment'
+  CompanyPayment: 'CompanyPayment',
+  CompanyPaymentHistory: 'CompanyPaymentHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -133,6 +134,18 @@ export const CompanyPaymentScalarFieldEnum = {
 } as const
 
 export type CompanyPaymentScalarFieldEnum = (typeof CompanyPaymentScalarFieldEnum)[keyof typeof CompanyPaymentScalarFieldEnum]
+
+
+export const CompanyPaymentHistoryScalarFieldEnum = {
+  id: 'id',
+  credits: 'credits',
+  beforeCredits: 'beforeCredits',
+  afterCredits: 'afterCredits',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyPaymentHistoryScalarFieldEnum = (typeof CompanyPaymentHistoryScalarFieldEnum)[keyof typeof CompanyPaymentHistoryScalarFieldEnum]
 
 
 export const SortOrder = {

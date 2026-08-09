@@ -71,3 +71,8 @@ export type Invoice = Prisma.InvoiceModel
  * 
  */
 export type CompanyPayment = Prisma.CompanyPaymentModel
+/**
+ * Model CompanyPaymentHistory
+ * 
+ */
+export type CompanyPaymentHistory = Prisma.CompanyPaymentHistoryModel

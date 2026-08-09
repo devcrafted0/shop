@@ -402,7 +402,8 @@ export const ModelName = {
   ProductType: 'ProductType',
   ProductCompany: 'ProductCompany',
   Invoice: 'Invoice',
-  CompanyPayment: 'CompanyPayment'
+  CompanyPayment: 'CompanyPayment',
+  CompanyPaymentHistory: 'CompanyPaymentHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -418,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "product" | "customProduct" | "productType" | "productCompany" | "invoice" | "companyPayment"
+    modelProps: "product" | "customProduct" | "productType" | "productCompany" | "invoice" | "companyPayment" | "companyPaymentHistory"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -866,6 +867,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CompanyPaymentHistory: {
+      payload: Prisma.$CompanyPaymentHistoryPayload<ExtArgs>
+      fields: Prisma.CompanyPaymentHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CompanyPaymentHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CompanyPaymentHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.CompanyPaymentHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CompanyPaymentHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.CompanyPaymentHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.CompanyPaymentHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.CompanyPaymentHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CompanyPaymentHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.CompanyPaymentHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload>
+        }
+        update: {
+          args: Prisma.CompanyPaymentHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.CompanyPaymentHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CompanyPaymentHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CompanyPaymentHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.CompanyPaymentHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyPaymentHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.CompanyPaymentHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCompanyPaymentHistory>
+        }
+        groupBy: {
+          args: Prisma.CompanyPaymentHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompanyPaymentHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CompanyPaymentHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompanyPaymentHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -963,6 +1038,18 @@ export const CompanyPaymentScalarFieldEnum = {
 } as const
 
 export type CompanyPaymentScalarFieldEnum = (typeof CompanyPaymentScalarFieldEnum)[keyof typeof CompanyPaymentScalarFieldEnum]
+
+
+export const CompanyPaymentHistoryScalarFieldEnum = {
+  id: 'id',
+  credits: 'credits',
+  beforeCredits: 'beforeCredits',
+  afterCredits: 'afterCredits',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyPaymentHistoryScalarFieldEnum = (typeof CompanyPaymentHistoryScalarFieldEnum)[keyof typeof CompanyPaymentHistoryScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1208,6 +1295,7 @@ export type GlobalOmitConfig = {
   productCompany?: Prisma.ProductCompanyOmit
   invoice?: Prisma.InvoiceOmit
   companyPayment?: Prisma.CompanyPaymentOmit
+  companyPaymentHistory?: Prisma.CompanyPaymentHistoryOmit
 }
 
 /* Types for Logging */

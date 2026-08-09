@@ -18,19 +18,9 @@ export async function editCompanyPayment(formData: FormData) {
 
   const credits = companyPayment?.credits! - creditsToRemove;
 
-  console.log(
-    { companyPayment, credits },
-    "----------------------------------------------------------------------------------------------------------------------------------------",
-  );
-
   if (isNaN(credits) || credits < 0) {
     return;
   }
-
-  console.log(
-    { companyPayment, credits },
-    "----------------------------------------------------------------------------------------------------------------------------------------",
-  );
 
   await db.companyPayment.update({
     where: {
