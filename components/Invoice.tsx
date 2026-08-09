@@ -3,6 +3,7 @@
 import * as React from "react";
 import { X, Plus, Loader2, ChevronDown, Search } from "lucide-react";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 
 interface Product {
   id: number;
@@ -131,11 +132,12 @@ function Invoice() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           description: description.trim(),
-          products: rows.map(({ productId, name, code, quantity }) => ({
+          products: rows.map(({ productId, name, code, quantity, price }) => ({
             id: productId,
             name,
             code,
             amount: quantity,
+            price,
           })),
           sellPrice,
         }),
@@ -157,9 +159,14 @@ function Invoice() {
       <p className="text-xs font-semibold uppercase tracking-wider text-primary">
         Billing
       </p>
-      <h2 className="mt-1 text-2xl font-bold text-foreground">
-        Create Invoice
-      </h2>
+      <div className="flex justify-between items-center">
+        <h2 className="mt-1 text-2xl font-bold text-foreground">
+          Create Invoice
+        </h2>
+        <Link href="/invoice-history" className="hover:underline">
+          Invoice History
+        </Link>
+      </div>
       <p className="mt-1 text-sm text-muted-foreground">
         Create a new invoice and add the products included in the sale.
       </p>
@@ -254,7 +261,6 @@ function Invoice() {
                   )}
                   <input
                     type="number"
-                    min={1}
                     value={row.quantity}
                     onChange={(e) => updateQuantity(row.rowId, e.target.value)}
                     className="w-full rounded-md border border-border bg-background px-3.5 py-2 text-sm text-primary outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"

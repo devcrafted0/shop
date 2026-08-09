@@ -60,3 +60,10 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export async function GET() {
+  const invoices = await db.invoice.findMany({
+    orderBy: { createdAt: "desc" },
+  });
+  return NextResponse.json(invoices);
+}
