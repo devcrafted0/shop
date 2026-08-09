@@ -37,3 +37,13 @@ export type ProductType = Prisma.ProductTypeModel
  * 
  */
 export type ProductCompany = Prisma.ProductCompanyModel
+/**
+ * Model Invoice
+ * 
+ */
+export type Invoice = Prisma.InvoiceModel
+/**
+ * Model CompanyPayment
+ * 
+ */
+export type CompanyPayment = Prisma.CompanyPaymentModel

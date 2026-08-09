@@ -30,7 +30,7 @@ const CustomProductCompany = ({ data }: { data: ProductCompany[] }) => {
 
               <button
                 type="submit"
-                className="shrink-0 rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-800 active:bg-gray-700"
+                className="shrink-0 rounded-lg px-5 py-2.5 text-sm font-medium transition"
               >
                 Add
               </button>

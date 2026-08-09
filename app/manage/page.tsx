@@ -6,12 +6,10 @@ import CustomProductCompany from "@/components/Product/CustomProductCompany";
 import CustomProductType from "@/components/Product/CustomProductType";
 
 import ProductList from "@/components/ProductList";
+import ManageCompanyPayment from "@/components/ManageCompanyPayment";
 
 const Page = async () => {
-  const customProduct = await db.customProduct.findMany({
-    take: 1, // Replaces LIMIT ?
-    skip: 1, // Replaces OFFSET ?
-  });
+  const customProduct = await db.customProduct.findMany();
   const customProductType = await db.productType.findMany();
   const customProductCompany = await db.productCompany.findMany();
 
@@ -128,6 +126,8 @@ const Page = async () => {
         <CustomProductType data={customProductType} />
         <CustomProductCompany data={customProductCompany} />
       </div>
+
+      <ManageCompanyPayment />
     </div>
   );
 };

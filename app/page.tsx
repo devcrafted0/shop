@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Product } from "@/generated/prisma/client";
 import Card from "@/components/ui/Card";
+import CompanyPayment from "@/components/CompanyPayment";
 
 const Page = () => {
   const [query, setQuery] = useState("");
@@ -25,9 +26,7 @@ const Page = () => {
 
   return (
     <div className="grid grid-cols-[1fr_5fr_1fr] p-4 h-screen">
-      <div className="border h-full">
-        <h1 className="font-bold text-center my-2 text-lg">Company Payment</h1>
-      </div>
+      <CompanyPayment />
 
       <div className="p-5 relative">
         <input

@@ -54,7 +54,9 @@ export const ModelName = {
   Product: 'Product',
   CustomProduct: 'CustomProduct',
   ProductType: 'ProductType',
-  ProductCompany: 'ProductCompany'
+  ProductCompany: 'ProductCompany',
+  Invoice: 'Invoice',
+  CompanyPayment: 'CompanyPayment'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -110,10 +112,57 @@ export const ProductCompanyScalarFieldEnum = {
 export type ProductCompanyScalarFieldEnum = (typeof ProductCompanyScalarFieldEnum)[keyof typeof ProductCompanyScalarFieldEnum]
 
 
+export const InvoiceScalarFieldEnum = {
+  id: 'id',
+  description: 'description',
+  products: 'products',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
+
+
+export const CompanyPaymentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  day: 'day',
+  credits: 'credits',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyPaymentScalarFieldEnum = (typeof CompanyPaymentScalarFieldEnum)[keyof typeof CompanyPaymentScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
