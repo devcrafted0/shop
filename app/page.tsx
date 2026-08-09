@@ -6,12 +6,26 @@ import { Product } from "@/generated/prisma/client";
 import Card from "@/components/ui/Card";
 import CompanyPayment from "@/components/CompanyPayment";
 import Invoice from "@/components/Invoice";
+import AlertCard from "@/components/ui/AlertCard";
+import { Cement, Others } from "@/components/CementOthers";
 
 const Page = () => {
   const [query, setQuery] = useState("");
   const [product, setProduct] = useState<Product[]>([]);
 
   const [lowPaints, setLowPaints] = useState<Product[]>();
+  const [lowCement, setLowCement] = useState<Product[]>();
+  const [lowOthers, setLowOthers] = useState<Product[]>();
+
+  const [selectedTab, setSelectedTab] = useState<"cement" | "others">("cement");
+
+  const tabData: [
+    { name: string; val: "cement" },
+    { name: string; val: "others" },
+  ] = [
+    { name: "Cement", val: "cement" },
+    { name: "Others", val: "others" },
+  ];
 
   useEffect(() => {
     const fetchPaints = async () => {
@@ -38,7 +52,21 @@ const Page = () => {
           product.product === "Paint" && product.amount < product.alertValue,
       );
 
+      const lowCementAlerts = data.filter(
+        (product: Product) =>
+          product.product === "Cement" && product.amount < product.alertValue,
+      );
+
+      const lowOtherAlerts = data.filter(
+        (product: Product) =>
+          product.product !== "Paint" &&
+          product.product !== "Cement" &&
+          product.amount < product.alertValue,
+      );
+
       setLowPaints(lowPaintAlerts);
+      setLowCement(lowCementAlerts);
+      setLowOthers(lowOtherAlerts);
     };
 
     fetchProducts();
@@ -70,12 +98,33 @@ const Page = () => {
             Manage
           </Link>
         </div>
-        <Invoice />
+        <div className="flex gap-5">
+          <Invoice />
+
+          <div className="border">
+            <div className="flex">
+              {tabData.map((c) => (
+                <button
+                  className={`mt-1 text-2xl font-bold text-foreground p-3 cursor-pointer hover:text-cyan-900 hover:drop-shadow-2xl ${selectedTab === c.val ? "text-cyan-700" : "text-black"}`}
+                  onClick={() => setSelectedTab(c.val)}
+                >
+                  {c.name}
+                </button>
+              ))}
+            </div>
+
+            {selectedTab === "cement" ? (
+              <Cement lowCement={lowCement!} />
+            ) : (
+              <Others lowOthers={lowOthers!} />
+            )}
+          </div>
+        </div>
       </div>
 
       <div className="flex h-full flex-col border border-black bg-white p-4">
         {/* Header with pulsing alert indicator */}
-        <div className="mb-4 flex items-center justify-between border-b border-black pb-3">
+        <div className="mb-2 flex items-center justify-between border-b border-black pb-3">
           <div className="flex items-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
@@ -93,49 +142,9 @@ const Page = () => {
 
         {/* Product Alerts List */}
         {lowPaints && lowPaints.length > 0 ? (
-          <div className="flex flex-col gap-2.5 overflow-y-auto">
+          <div className="flex flex-col gap-2 overflow-y-auto">
             {lowPaints.map((p, index) => (
-              <div
-                key={p.id || p.id || index}
-                className="flex flex-col justify-between border border-black bg-white p-3 transition-colors hover:bg-zinc-50"
-              >
-                {/* Top Row: Name, Company & Current Stock */}
-                <div className="flex items-start justify-between gap-2">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-black">{p.name}</span>
-                      <span className="border border-zinc-300 px-1.5 py-0.2 text-[10px] font-semibold text-zinc-600 uppercase">
-                        {p.company}
-                      </span>
-                    </div>
-                    <p className="text-xs text-zinc-500">{p.type}</p>
-                  </div>
-
-                  {/* Stock Count vs Alert Badge */}
-                  <div className="text-right">
-                    <div className="font-mono text-sm font-bold text-red-600">
-                      {p.amount}{" "}
-                      <span className="text-xs font-normal text-zinc-500">
-                        left
-                      </span>
-                    </div>
-                    <span className="font-mono text-[10px] text-zinc-400">
-                      Threshold: {p.alertValue}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Bottom Meta Row: Code & Size */}
-                <div className="mt-2.5 flex items-center justify-between border-t border-zinc-200 pt-2 font-mono text-xs">
-                  <span className="text-zinc-600">
-                    Code: <strong className="text-black">{p.code}</strong>
-                  </span>
-
-                  <span className="border border-black bg-black px-1.5 py-0.5 text-[10px] font-bold text-white uppercase">
-                    Size: {p.size}
-                  </span>
-                </div>
-              </div>
+              <AlertCard p={p} index={index} />
             ))}
           </div>
         ) : (

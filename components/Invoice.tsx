@@ -72,6 +72,22 @@ function Invoice() {
     console.log({ rows });
   }, [rows]);
 
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.shiftKey && event.key.toLowerCase() === "z") {
+        event.preventDefault();
+
+        addRow();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   // const sellPrice = rows.reduce((sum, r) => sum + r.quantity * r.price, 0);
 
   const selectProduct = (rowId: string, product: Product) => {
@@ -155,10 +171,7 @@ function Invoice() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-2xl border border-border bg-card p-3 mt-2 shadow-sm">
-      <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-        Billing
-      </p>
+    <div className="min-w-xl border border-border bg-card p-3 shadow-sm">
       <div className="flex justify-between items-center">
         <h2 className="mt-1 text-2xl font-bold text-foreground">
           Create Invoice
@@ -167,12 +180,6 @@ function Invoice() {
           Invoice History
         </Link>
       </div>
-      <p className="mt-1 text-sm text-muted-foreground">
-        Create a new invoice and add the products included in the sale.
-      </p>
-
-      <div className="mt-4 border-t border-border" />
-
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-6">
         {/* Description */}
         <div className="flex flex-col gap-2">
@@ -198,9 +205,6 @@ function Invoice() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold text-foreground">Products</p>
-              <p className="text-xs text-muted-foreground">
-                Select the products included in this invoice.
-              </p>
             </div>
             <button
               type="button"
