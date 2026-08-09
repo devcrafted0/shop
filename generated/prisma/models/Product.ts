@@ -30,12 +30,14 @@ export type ProductAvgAggregateOutputType = {
   id: number | null
   amount: number | null
   actualPrice: number | null
+  alertValue: number | null
 }
 
 export type ProductSumAggregateOutputType = {
   id: number | null
   amount: number | null
   actualPrice: number | null
+  alertValue: number | null
 }
 
 export type ProductMinAggregateOutputType = {
@@ -48,6 +50,7 @@ export type ProductMinAggregateOutputType = {
   amount: number | null
   size: $Enums.ProductSize | null
   actualPrice: number | null
+  alertValue: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -62,6 +65,7 @@ export type ProductMaxAggregateOutputType = {
   amount: number | null
   size: $Enums.ProductSize | null
   actualPrice: number | null
+  alertValue: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -76,6 +80,7 @@ export type ProductCountAggregateOutputType = {
   amount: number
   size: number
   actualPrice: number
+  alertValue: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -86,12 +91,14 @@ export type ProductAvgAggregateInputType = {
   id?: true
   amount?: true
   actualPrice?: true
+  alertValue?: true
 }
 
 export type ProductSumAggregateInputType = {
   id?: true
   amount?: true
   actualPrice?: true
+  alertValue?: true
 }
 
 export type ProductMinAggregateInputType = {
@@ -104,6 +111,7 @@ export type ProductMinAggregateInputType = {
   amount?: true
   size?: true
   actualPrice?: true
+  alertValue?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -118,6 +126,7 @@ export type ProductMaxAggregateInputType = {
   amount?: true
   size?: true
   actualPrice?: true
+  alertValue?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -132,6 +141,7 @@ export type ProductCountAggregateInputType = {
   amount?: true
   size?: true
   actualPrice?: true
+  alertValue?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -233,6 +243,7 @@ export type ProductGroupByOutputType = {
   amount: number
   size: $Enums.ProductSize
   actualPrice: number
+  alertValue: number
   createdAt: Date
   updatedAt: Date
   _count: ProductCountAggregateOutputType | null
@@ -270,6 +281,7 @@ export type ProductWhereInput = {
   amount?: Prisma.IntFilter<"Product"> | number
   size?: Prisma.EnumProductSizeFilter<"Product"> | $Enums.ProductSize
   actualPrice?: Prisma.FloatFilter<"Product"> | number
+  alertValue?: Prisma.IntFilter<"Product"> | number
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
 }
@@ -284,6 +296,7 @@ export type ProductOrderByWithRelationInput = {
   amount?: Prisma.SortOrder
   size?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
+  alertValue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -301,6 +314,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   amount?: Prisma.IntFilter<"Product"> | number
   size?: Prisma.EnumProductSizeFilter<"Product"> | $Enums.ProductSize
   actualPrice?: Prisma.FloatFilter<"Product"> | number
+  alertValue?: Prisma.IntFilter<"Product"> | number
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
 }, "id">
@@ -315,6 +329,7 @@ export type ProductOrderByWithAggregationInput = {
   amount?: Prisma.SortOrder
   size?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
+  alertValue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProductCountOrderByAggregateInput
@@ -337,6 +352,7 @@ export type ProductScalarWhereWithAggregatesInput = {
   amount?: Prisma.IntWithAggregatesFilter<"Product"> | number
   size?: Prisma.EnumProductSizeWithAggregatesFilter<"Product"> | $Enums.ProductSize
   actualPrice?: Prisma.FloatWithAggregatesFilter<"Product"> | number
+  alertValue?: Prisma.IntWithAggregatesFilter<"Product"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
 }
@@ -350,6 +366,7 @@ export type ProductCreateInput = {
   amount?: number
   size?: $Enums.ProductSize
   actualPrice: number
+  alertValue: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -364,6 +381,7 @@ export type ProductUncheckedCreateInput = {
   amount?: number
   size?: $Enums.ProductSize
   actualPrice: number
+  alertValue: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -377,6 +395,7 @@ export type ProductUpdateInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.EnumProductSizeFieldUpdateOperationsInput | $Enums.ProductSize
   actualPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  alertValue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -391,6 +410,7 @@ export type ProductUncheckedUpdateInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.EnumProductSizeFieldUpdateOperationsInput | $Enums.ProductSize
   actualPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  alertValue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -405,6 +425,7 @@ export type ProductCreateManyInput = {
   amount?: number
   size?: $Enums.ProductSize
   actualPrice: number
+  alertValue: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -418,6 +439,7 @@ export type ProductUpdateManyMutationInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.EnumProductSizeFieldUpdateOperationsInput | $Enums.ProductSize
   actualPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  alertValue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -432,6 +454,7 @@ export type ProductUncheckedUpdateManyInput = {
   amount?: Prisma.IntFieldUpdateOperationsInput | number
   size?: Prisma.EnumProductSizeFieldUpdateOperationsInput | $Enums.ProductSize
   actualPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  alertValue?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -446,6 +469,7 @@ export type ProductCountOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   size?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
+  alertValue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -454,6 +478,7 @@ export type ProductAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
+  alertValue?: Prisma.SortOrder
 }
 
 export type ProductMaxOrderByAggregateInput = {
@@ -466,6 +491,7 @@ export type ProductMaxOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   size?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
+  alertValue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -480,6 +506,7 @@ export type ProductMinOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   size?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
+  alertValue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -488,6 +515,7 @@ export type ProductSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
   actualPrice?: Prisma.SortOrder
+  alertValue?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -530,6 +558,7 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   amount?: boolean
   size?: boolean
   actualPrice?: boolean
+  alertValue?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["product"]>
@@ -544,6 +573,7 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   amount?: boolean
   size?: boolean
   actualPrice?: boolean
+  alertValue?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["product"]>
@@ -558,6 +588,7 @@ export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   amount?: boolean
   size?: boolean
   actualPrice?: boolean
+  alertValue?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["product"]>
@@ -572,11 +603,12 @@ export type ProductSelectScalar = {
   amount?: boolean
   size?: boolean
   actualPrice?: boolean
+  alertValue?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "product" | "type" | "company" | "name" | "code" | "amount" | "size" | "actualPrice" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "product" | "type" | "company" | "name" | "code" | "amount" | "size" | "actualPrice" | "alertValue" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
 
 export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Product"
@@ -591,6 +623,7 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     amount: number
     size: $Enums.ProductSize
     actualPrice: number
+    alertValue: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["product"]>
@@ -1025,6 +1058,7 @@ export interface ProductFieldRefs {
   readonly amount: Prisma.FieldRef<"Product", 'Int'>
   readonly size: Prisma.FieldRef<"Product", 'ProductSize'>
   readonly actualPrice: Prisma.FieldRef<"Product", 'Float'>
+  readonly alertValue: Prisma.FieldRef<"Product", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Product", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Product", 'DateTime'>
 }

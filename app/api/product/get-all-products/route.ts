@@ -6,10 +6,5 @@ export async function GET() {
     orderBy: { name: "asc" },
   });
 
-  console.log(
-    { products },
-    "---------------------------------------------------------------------------------------------",
-  );
-
   return NextResponse.json(products);
 }

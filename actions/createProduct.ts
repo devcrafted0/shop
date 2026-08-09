@@ -18,6 +18,7 @@ export async function createProduct(formData: FormData) {
         | "DRUM"
         | "FULL",
       actualPrice: Number(formData.get("actualPrice")),
+      alertValue: Number(formData.get("alertVal")),
     },
   });
   revalidatePath("/manage");
