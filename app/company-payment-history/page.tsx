@@ -6,9 +6,9 @@ import Link from "next/link";
 const Page = async ({
   searchParams,
 }: {
-  searchParams: Promise<{ from?: string; to?: string }>;
+  searchParams: Promise<{ from?: string; to?: string; query?: string }>;
 }) => {
-  const { from, to } = await searchParams;
+  const { from, to, query } = await searchParams;
 
   const companyPaymenyHistory = await db.companyPaymentHistory.findMany({
     where:
@@ -23,6 +23,10 @@ const Page = async ({
     orderBy: { createdAt: "desc" },
     take: 20,
   });
+
+  const filtered = companyPaymenyHistory.filter(
+    (item) => !query || item.companyPaymentName === query,
+  );
 
   const companyPayment = await db.companyPayment.findMany();
 
@@ -128,6 +132,17 @@ const Page = async ({
             </div>
           </form>
 
+          <form>
+            {" "}
+            <label htmlFor="query">Search :</label>{" "}
+            <input
+              type="text"
+              name="query"
+              id="query"
+              defaultValue={query}
+            />{" "}
+          </form>
+
           <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
             <div className="overflow-hidden border border-border bg-card shadow-sm">
               <div className="grid grid-cols-[1.5fr_1fr_1fr_1fr_2fr_1.3fr] items-center gap-4 border-b border-border bg-muted/40 px-5 py-3">
@@ -156,7 +171,7 @@ const Page = async ({
                 </div>
               </div>
 
-              {companyPaymenyHistory.map((payment) => (
+              {filtered.map((payment) => (
                 <div
                   key={payment.id}
                   className="grid grid-cols-[1.5fr_1fr_1fr_1fr_2fr_1.3fr] items-center gap-4 border-b border-border px-5 py-4 last:border-b-0 transition-colors hover:bg-muted/40"
@@ -231,6 +246,7 @@ const Page = async ({
             </div>
           </section>
         </div>
+
         <form method="GET">
           {" "}
           <div>
@@ -245,6 +261,7 @@ const Page = async ({
           </div>{" "}
           <button type="submit"> Search </button>{" "}
         </form>
+
         <Link href="/company-payment-history">Reset</Link>
       </main>
     </div>
