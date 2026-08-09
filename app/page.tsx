@@ -97,6 +97,12 @@ const Page = () => {
           >
             Manage
           </Link>
+          <Link
+            href="/analysis"
+            className="absolute -top-5 left-0 font-semibold text-lg"
+          >
+            Analysis
+          </Link>
         </div>
         <div className="flex gap-5">
           <Invoice />

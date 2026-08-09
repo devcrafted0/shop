@@ -8,7 +8,9 @@ interface InvoiceProduct {
   name: string;
   code: string;
   amount: number;
-  price: number;
+  unitPrice: number;
+  totalPrice: number;
+  actualPrice: number;
 }
 
 interface Invoice {
@@ -102,7 +104,7 @@ export function InvoiceHistory() {
             );
 
             const totalCost = invoice.products.reduce((total, product) => {
-              return total + product.amount * product.price;
+              return total + product.amount * product.actualPrice;
             }, 0);
             const profit = invoice.sellPrice - totalCost;
 
@@ -214,7 +216,7 @@ export function InvoiceHistory() {
                             {p.amount}
                           </span>
                           <span className="text-right font-mono text-sm text-muted-foreground">
-                            {formatNumber(p.price * p.amount)}
+                            {formatNumber(p.actualPrice * p.amount)}
                           </span>
                         </div>
                       ))}

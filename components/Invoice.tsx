@@ -23,7 +23,11 @@ interface ProductRow {
   name: string;
   code: string;
   quantity: number;
-  price: number;
+  unitPrice: number;
+  totalPrice: number;
+  company: string;
+  type: string;
+  actualPrice: number;
   triggerRef: React.RefObject<HTMLButtonElement | null>;
 }
 
@@ -33,7 +37,11 @@ const emptyRow = (): ProductRow => ({
   name: "",
   code: "",
   quantity: 1,
-  price: 0,
+  unitPrice: 0,
+  totalPrice: 0,
+  actualPrice: 0,
+  company: "",
+  type: "",
   triggerRef: React.createRef<HTMLButtonElement>(),
 });
 
@@ -49,8 +57,6 @@ function Invoice() {
   const [openPickerRowId, setOpenPickerRowId] = React.useState<string | null>(
     null,
   );
-
-  const [sellPrice, setSellPrice] = React.useState<number>(0);
 
   React.useEffect(() => {
     const loadProducts = async () => {
@@ -88,7 +94,7 @@ function Invoice() {
     };
   }, []);
 
-  // const sellPrice = rows.reduce((sum, r) => sum + r.quantity * r.price, 0);
+  const sellPrice = rows.reduce((sum, r) => sum + r.totalPrice, 0);
 
   const selectProduct = (rowId: string, product: Product) => {
     setRows((prev) =>
@@ -99,7 +105,9 @@ function Invoice() {
               productId: product.id,
               name: `${product.name} (${product.code}) (${product.size}) (${product.company})`,
               code: product.code,
-              price: product.actualPrice,
+              actualPrice: product.actualPrice,
+              company: product.company,
+              type: product.type,
             }
           : r,
       ),
@@ -110,16 +118,32 @@ function Invoice() {
   const updateQuantity = (rowId: string, value: string) => {
     const qty = Number(value.replace(/^0+(?=\d)/, "")) || 0;
     setRows((prev) =>
-      prev.map((r) => (r.rowId === rowId ? { ...r, quantity: qty } : r)),
+      prev.map((r) =>
+        r.rowId === rowId
+          ? {
+              ...r,
+              quantity: qty,
+              totalPrice: qty * r.unitPrice, // Recalculate and update state
+            }
+          : r,
+      ),
     );
   };
 
-  // const updatePrice = (rowId: string, value: string) => {
-  //   const prc = Number(value.replace(/^0+(?=\d)/, "")) || 0;
-  //   setRows((prev) =>
-  //     prev.map((r) => (r.rowId === rowId ? { ...r, price: prc } : r)),
-  //   );
-  // };
+  const updateUnitPrice = (rowId: string, value: string) => {
+    const prc = Number(value.replace(/^0+(?=\d)/, "")) || 0;
+    setRows((prev) =>
+      prev.map((r) =>
+        r.rowId === rowId
+          ? {
+              ...r,
+              unitPrice: prc,
+              totalPrice: r.quantity * prc,
+            }
+          : r,
+      ),
+    );
+  };
 
   const addRow = () => setRows((prev) => [...prev, emptyRow()]);
 
@@ -148,13 +172,29 @@ function Invoice() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           description: description.trim(),
-          products: rows.map(({ productId, name, code, quantity, price }) => ({
-            id: productId,
-            name,
-            code,
-            amount: quantity,
-            price,
-          })),
+          products: rows.map(
+            ({
+              productId,
+              name,
+              code,
+              quantity,
+              company,
+              type,
+              unitPrice,
+              totalPrice,
+              actualPrice,
+            }) => ({
+              id: productId,
+              name,
+              code,
+              amount: quantity,
+              unitPrice,
+              company,
+              type,
+              totalPrice,
+              actualPrice,
+            }),
+          ),
           sellPrice,
         }),
       });
@@ -171,7 +211,7 @@ function Invoice() {
   };
 
   return (
-    <div className="min-w-xl border border-border bg-card p-3 shadow-sm">
+    <div className="min-w-2xl border border-border bg-card p-3 shadow-sm">
       <div className="flex justify-between items-center">
         <h2 className="mt-1 text-2xl font-bold text-foreground">
           Create Invoice
@@ -271,25 +311,39 @@ function Invoice() {
                   />
                 </div>
 
-                {/* <div className="flex w-28 flex-col gap-1.5">
+                <div className="flex w-28 flex-col gap-1.5">
                   {index === 0 && (
                     <label className="text-xs font-semibold text-foreground">
-                      Price
+                      Unit Price
                     </label>
                   )}
                   <input
                     type="number"
                     defaultValue={0}
-                    onChange={(e) => updatePrice(row.rowId, e.target.value)}
+                    onChange={(e) => updateUnitPrice(row.rowId, e.target.value)}
                     className="w-full rounded-md border border-border bg-muted/40 px-3.5 py-2 text-sm text-foreground outline-none"
                   />
-                </div> */}
+                </div>
+
+                <div className="flex w-28 flex-col gap-1.5">
+                  {index === 0 && (
+                    <label className="text-xs font-semibold text-foreground">
+                      Total Price
+                    </label>
+                  )}
+                  <input
+                    type="number"
+                    value={row.totalPrice}
+                    className="w-full rounded-md border border-border bg-muted/40 px-3.5 py-2 text-sm text-foreground outline-none"
+                    readOnly
+                  />
+                </div>
 
                 <button
                   type="button"
                   onClick={() => removeRow(row.rowId)}
                   disabled={rows.length === 1}
-                  className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                  className="flex h-9.5 w-9.5 shrink-0 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -307,7 +361,7 @@ function Invoice() {
             type="number"
             className="border p-2"
             value={sellPrice}
-            onChange={(e) => setSellPrice(Number(e.target.value))}
+            readOnly
           />
         </div>
 
