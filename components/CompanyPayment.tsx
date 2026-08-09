@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { type CompanyPayment } from "@/generated/prisma/client";
 import { editCompanyPayment } from "@/actions/companyPayment/editCompanyPayment";
+import { formatNumber } from "@/utils/formatNumber";
 import Link from "next/link";
 
 const CompanyPayment = () => {
@@ -29,10 +30,6 @@ const CompanyPayment = () => {
     editCompanyPayment(formData);
     window.location.reload();
   };
-
-  function formatNumber(value: number): string {
-    return value.toLocaleString("en-US");
-  }
 
   const dayName = new Date().toLocaleDateString("en-US", {
     weekday: "long",

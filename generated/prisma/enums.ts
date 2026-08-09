@@ -18,3 +18,11 @@ export const ProductSize = {
 } as const
 
 export type ProductSize = (typeof ProductSize)[keyof typeof ProductSize]
+
+
+export const CreditTransactionType = {
+  ADD: 'ADD',
+  REMOVE: 'REMOVE'
+} as const
+
+export type CreditTransactionType = (typeof CreditTransactionType)[keyof typeof CreditTransactionType]

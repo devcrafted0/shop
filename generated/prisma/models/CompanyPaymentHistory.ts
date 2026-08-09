@@ -42,27 +42,36 @@ export type CompanyPaymentHistorySumAggregateOutputType = {
 
 export type CompanyPaymentHistoryMinAggregateOutputType = {
   id: number | null
+  companyPaymentName: string | null
+  description: string | null
   credits: number | null
   beforeCredits: number | null
   afterCredits: number | null
+  transactionType: $Enums.CreditTransactionType | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type CompanyPaymentHistoryMaxAggregateOutputType = {
   id: number | null
+  companyPaymentName: string | null
+  description: string | null
   credits: number | null
   beforeCredits: number | null
   afterCredits: number | null
+  transactionType: $Enums.CreditTransactionType | null
   createdAt: Date | null
   updatedAt: Date | null
 }
 
 export type CompanyPaymentHistoryCountAggregateOutputType = {
   id: number
+  companyPaymentName: number
+  description: number
   credits: number
   beforeCredits: number
   afterCredits: number
+  transactionType: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -85,27 +94,36 @@ export type CompanyPaymentHistorySumAggregateInputType = {
 
 export type CompanyPaymentHistoryMinAggregateInputType = {
   id?: true
+  companyPaymentName?: true
+  description?: true
   credits?: true
   beforeCredits?: true
   afterCredits?: true
+  transactionType?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type CompanyPaymentHistoryMaxAggregateInputType = {
   id?: true
+  companyPaymentName?: true
+  description?: true
   credits?: true
   beforeCredits?: true
   afterCredits?: true
+  transactionType?: true
   createdAt?: true
   updatedAt?: true
 }
 
 export type CompanyPaymentHistoryCountAggregateInputType = {
   id?: true
+  companyPaymentName?: true
+  description?: true
   credits?: true
   beforeCredits?: true
   afterCredits?: true
+  transactionType?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -199,9 +217,12 @@ export type CompanyPaymentHistoryGroupByArgs<ExtArgs extends runtime.Types.Exten
 
 export type CompanyPaymentHistoryGroupByOutputType = {
   id: number
+  companyPaymentName: string
+  description: string | null
   credits: number
   beforeCredits: number
   afterCredits: number
+  transactionType: $Enums.CreditTransactionType
   createdAt: Date
   updatedAt: Date
   _count: CompanyPaymentHistoryCountAggregateOutputType | null
@@ -231,18 +252,24 @@ export type CompanyPaymentHistoryWhereInput = {
   OR?: Prisma.CompanyPaymentHistoryWhereInput[]
   NOT?: Prisma.CompanyPaymentHistoryWhereInput | Prisma.CompanyPaymentHistoryWhereInput[]
   id?: Prisma.IntFilter<"CompanyPaymentHistory"> | number
+  companyPaymentName?: Prisma.StringFilter<"CompanyPaymentHistory"> | string
+  description?: Prisma.StringNullableFilter<"CompanyPaymentHistory"> | string | null
   credits?: Prisma.IntFilter<"CompanyPaymentHistory"> | number
   beforeCredits?: Prisma.IntFilter<"CompanyPaymentHistory"> | number
   afterCredits?: Prisma.IntFilter<"CompanyPaymentHistory"> | number
+  transactionType?: Prisma.EnumCreditTransactionTypeFilter<"CompanyPaymentHistory"> | $Enums.CreditTransactionType
   createdAt?: Prisma.DateTimeFilter<"CompanyPaymentHistory"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CompanyPaymentHistory"> | Date | string
 }
 
 export type CompanyPaymentHistoryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  companyPaymentName?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   credits?: Prisma.SortOrder
   beforeCredits?: Prisma.SortOrder
   afterCredits?: Prisma.SortOrder
+  transactionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -252,18 +279,24 @@ export type CompanyPaymentHistoryWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.CompanyPaymentHistoryWhereInput | Prisma.CompanyPaymentHistoryWhereInput[]
   OR?: Prisma.CompanyPaymentHistoryWhereInput[]
   NOT?: Prisma.CompanyPaymentHistoryWhereInput | Prisma.CompanyPaymentHistoryWhereInput[]
+  companyPaymentName?: Prisma.StringFilter<"CompanyPaymentHistory"> | string
+  description?: Prisma.StringNullableFilter<"CompanyPaymentHistory"> | string | null
   credits?: Prisma.IntFilter<"CompanyPaymentHistory"> | number
   beforeCredits?: Prisma.IntFilter<"CompanyPaymentHistory"> | number
   afterCredits?: Prisma.IntFilter<"CompanyPaymentHistory"> | number
+  transactionType?: Prisma.EnumCreditTransactionTypeFilter<"CompanyPaymentHistory"> | $Enums.CreditTransactionType
   createdAt?: Prisma.DateTimeFilter<"CompanyPaymentHistory"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CompanyPaymentHistory"> | Date | string
 }, "id">
 
 export type CompanyPaymentHistoryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  companyPaymentName?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   credits?: Prisma.SortOrder
   beforeCredits?: Prisma.SortOrder
   afterCredits?: Prisma.SortOrder
+  transactionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CompanyPaymentHistoryCountOrderByAggregateInput
@@ -278,78 +311,105 @@ export type CompanyPaymentHistoryScalarWhereWithAggregatesInput = {
   OR?: Prisma.CompanyPaymentHistoryScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CompanyPaymentHistoryScalarWhereWithAggregatesInput | Prisma.CompanyPaymentHistoryScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"CompanyPaymentHistory"> | number
+  companyPaymentName?: Prisma.StringWithAggregatesFilter<"CompanyPaymentHistory"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"CompanyPaymentHistory"> | string | null
   credits?: Prisma.IntWithAggregatesFilter<"CompanyPaymentHistory"> | number
   beforeCredits?: Prisma.IntWithAggregatesFilter<"CompanyPaymentHistory"> | number
   afterCredits?: Prisma.IntWithAggregatesFilter<"CompanyPaymentHistory"> | number
+  transactionType?: Prisma.EnumCreditTransactionTypeWithAggregatesFilter<"CompanyPaymentHistory"> | $Enums.CreditTransactionType
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CompanyPaymentHistory"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CompanyPaymentHistory"> | Date | string
 }
 
 export type CompanyPaymentHistoryCreateInput = {
+  companyPaymentName: string
+  description?: string | null
   credits: number
   beforeCredits: number
   afterCredits: number
+  transactionType: $Enums.CreditTransactionType
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type CompanyPaymentHistoryUncheckedCreateInput = {
   id?: number
+  companyPaymentName: string
+  description?: string | null
   credits: number
   beforeCredits: number
   afterCredits: number
+  transactionType: $Enums.CreditTransactionType
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type CompanyPaymentHistoryUpdateInput = {
+  companyPaymentName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credits?: Prisma.IntFieldUpdateOperationsInput | number
   beforeCredits?: Prisma.IntFieldUpdateOperationsInput | number
   afterCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  transactionType?: Prisma.EnumCreditTransactionTypeFieldUpdateOperationsInput | $Enums.CreditTransactionType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CompanyPaymentHistoryUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyPaymentName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credits?: Prisma.IntFieldUpdateOperationsInput | number
   beforeCredits?: Prisma.IntFieldUpdateOperationsInput | number
   afterCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  transactionType?: Prisma.EnumCreditTransactionTypeFieldUpdateOperationsInput | $Enums.CreditTransactionType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CompanyPaymentHistoryCreateManyInput = {
   id?: number
+  companyPaymentName: string
+  description?: string | null
   credits: number
   beforeCredits: number
   afterCredits: number
+  transactionType: $Enums.CreditTransactionType
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type CompanyPaymentHistoryUpdateManyMutationInput = {
+  companyPaymentName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credits?: Prisma.IntFieldUpdateOperationsInput | number
   beforeCredits?: Prisma.IntFieldUpdateOperationsInput | number
   afterCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  transactionType?: Prisma.EnumCreditTransactionTypeFieldUpdateOperationsInput | $Enums.CreditTransactionType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CompanyPaymentHistoryUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  companyPaymentName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   credits?: Prisma.IntFieldUpdateOperationsInput | number
   beforeCredits?: Prisma.IntFieldUpdateOperationsInput | number
   afterCredits?: Prisma.IntFieldUpdateOperationsInput | number
+  transactionType?: Prisma.EnumCreditTransactionTypeFieldUpdateOperationsInput | $Enums.CreditTransactionType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CompanyPaymentHistoryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  companyPaymentName?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   credits?: Prisma.SortOrder
   beforeCredits?: Prisma.SortOrder
   afterCredits?: Prisma.SortOrder
+  transactionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -363,18 +423,24 @@ export type CompanyPaymentHistoryAvgOrderByAggregateInput = {
 
 export type CompanyPaymentHistoryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  companyPaymentName?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   credits?: Prisma.SortOrder
   beforeCredits?: Prisma.SortOrder
   afterCredits?: Prisma.SortOrder
+  transactionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
 export type CompanyPaymentHistoryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  companyPaymentName?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   credits?: Prisma.SortOrder
   beforeCredits?: Prisma.SortOrder
   afterCredits?: Prisma.SortOrder
+  transactionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -386,54 +452,77 @@ export type CompanyPaymentHistorySumOrderByAggregateInput = {
   afterCredits?: Prisma.SortOrder
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type EnumCreditTransactionTypeFieldUpdateOperationsInput = {
+  set?: $Enums.CreditTransactionType
+}
+
 
 
 export type CompanyPaymentHistorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  companyPaymentName?: boolean
+  description?: boolean
   credits?: boolean
   beforeCredits?: boolean
   afterCredits?: boolean
+  transactionType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["companyPaymentHistory"]>
 
 export type CompanyPaymentHistorySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  companyPaymentName?: boolean
+  description?: boolean
   credits?: boolean
   beforeCredits?: boolean
   afterCredits?: boolean
+  transactionType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["companyPaymentHistory"]>
 
 export type CompanyPaymentHistorySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  companyPaymentName?: boolean
+  description?: boolean
   credits?: boolean
   beforeCredits?: boolean
   afterCredits?: boolean
+  transactionType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["companyPaymentHistory"]>
 
 export type CompanyPaymentHistorySelectScalar = {
   id?: boolean
+  companyPaymentName?: boolean
+  description?: boolean
   credits?: boolean
   beforeCredits?: boolean
   afterCredits?: boolean
+  transactionType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CompanyPaymentHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "credits" | "beforeCredits" | "afterCredits" | "createdAt" | "updatedAt", ExtArgs["result"]["companyPaymentHistory"]>
+export type CompanyPaymentHistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyPaymentName" | "description" | "credits" | "beforeCredits" | "afterCredits" | "transactionType" | "createdAt" | "updatedAt", ExtArgs["result"]["companyPaymentHistory"]>
 
 export type $CompanyPaymentHistoryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CompanyPaymentHistory"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    companyPaymentName: string
+    description: string | null
     credits: number
     beforeCredits: number
     afterCredits: number
+    transactionType: $Enums.CreditTransactionType
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["companyPaymentHistory"]>
@@ -860,9 +949,12 @@ export interface Prisma__CompanyPaymentHistoryClient<T, Null = never, ExtArgs ex
  */
 export interface CompanyPaymentHistoryFieldRefs {
   readonly id: Prisma.FieldRef<"CompanyPaymentHistory", 'Int'>
+  readonly companyPaymentName: Prisma.FieldRef<"CompanyPaymentHistory", 'String'>
+  readonly description: Prisma.FieldRef<"CompanyPaymentHistory", 'String'>
   readonly credits: Prisma.FieldRef<"CompanyPaymentHistory", 'Int'>
   readonly beforeCredits: Prisma.FieldRef<"CompanyPaymentHistory", 'Int'>
   readonly afterCredits: Prisma.FieldRef<"CompanyPaymentHistory", 'Int'>
+  readonly transactionType: Prisma.FieldRef<"CompanyPaymentHistory", 'CreditTransactionType'>
   readonly createdAt: Prisma.FieldRef<"CompanyPaymentHistory", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"CompanyPaymentHistory", 'DateTime'>
 }

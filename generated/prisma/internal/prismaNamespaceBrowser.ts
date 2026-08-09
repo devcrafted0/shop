@@ -138,9 +138,12 @@ export type CompanyPaymentScalarFieldEnum = (typeof CompanyPaymentScalarFieldEnu
 
 export const CompanyPaymentHistoryScalarFieldEnum = {
   id: 'id',
+  companyPaymentName: 'companyPaymentName',
+  description: 'description',
   credits: 'credits',
   beforeCredits: 'beforeCredits',
   afterCredits: 'afterCredits',
+  transactionType: 'transactionType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -178,4 +181,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
