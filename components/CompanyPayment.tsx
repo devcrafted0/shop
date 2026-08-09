@@ -24,6 +24,10 @@ const CompanyPayment = () => {
     window.location.reload();
   };
 
+  function formatNumber(value: number): string {
+    return value.toLocaleString("en-US");
+  }
+
   return (
     <div className="border h-full">
       <h1 className="font-bold text-center my-2 text-lg">Company Payment</h1>
@@ -34,11 +38,14 @@ const CompanyPayment = () => {
           <input type="hidden" name="id" value={c.id} />
         </form>
       ))}
-      <div>
+      <div className="border-t border-b pb-3">
         {companyPayment.map((c) => (
-          <li>
-            {c.name} {c.credits}
-          </li>
+          <section className="pt-3 px-3 grid grid-cols-2">
+            <div className="border p-2 font-semibold text-lg">{c.name} </div>
+            <div className="border p-2 font-semibold text-md">
+              {formatNumber(c.credits)}
+            </div>
+          </section>
         ))}
       </div>
     </div>
