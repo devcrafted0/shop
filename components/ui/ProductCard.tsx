@@ -43,49 +43,79 @@ const ProductCard = ({ product }: { product: Product }) => {
 
       {/* Details */}
       <div className="mt-5 grid grid-cols-2 gap-3">
-        <div className="p-3 border">
+        <div className="p-2 border">
           <p className="text-xs text-gray-400">Type</p>
           <p className="mt-1 text-sm font-medium text-gray-800">
             {product.type}
           </p>
         </div>
 
-        <div className="p-3 border">
+        <div className="p-2 border">
           <p className="text-xs text-gray-400">Size</p>
           <p className="mt-1 text-sm font-medium text-gray-800">
             {product.size}
           </p>
         </div>
 
-        <div className="p-3 border">
-          <p className="text-xs text-gray-400">Amount</p>
+        <div className="p-2 border">
           {isEditing ? (
-            <form
+            <EnterSubmitForm
               action={submitEditForm}
-              className="mt-1 flex items-center gap-2"
+              className="mt-1 flex flex-col items-center gap-2"
             >
               <input type="hidden" name="id" value={product.id} />
-
-              <input
-                type="number"
-                name="amount"
-                min={0}
-                defaultValue={product.amount}
-                className="w-20 rounded-md border border-gray-300 px-2 py-1 text-sm font-semibold outline-none focus:border-gray-500"
-              />
-            </form>
+              <div>
+                <p className="text-xs text-gray-400">Amount</p>
+                <input
+                  type="number"
+                  name="amount"
+                  min={0}
+                  defaultValue={product.amount}
+                  className="w-20 rounded-md border border-gray-300 px-2 py-1 text-sm font-semibold outline-none focus:border-gray-500"
+                />
+              </div>
+              <div>
+                <p className="text-xs text-gray-400">Actual Amount</p>
+                <input
+                  type="number"
+                  name="actualPrice"
+                  min={0}
+                  defaultValue={product.actualPrice}
+                  className="w-20 rounded-md border border-gray-300 px-2 py-1 text-sm font-semibold outline-none focus:border-gray-500"
+                />
+              </div>
+            </EnterSubmitForm>
           ) : (
-            <p className="mt-1 text-sm font-semibold text-gray-900">
-              {product.amount}
-            </p>
+            <div>
+              <div>
+                <p className="text-xs text-gray-400">Amount</p>
+                <p className="mt-1 text-sm font-semibold text-gray-900">
+                  {product.amount}
+                </p>
+              </div>
+              <div className="p-2 border">
+                <p className="text-xs text-gray-400">Actual Price</p>
+                <p className="mt-1 truncate text-sm font-medium text-gray-800">
+                  {product.actualPrice}
+                </p>
+              </div>
+            </div>
           )}
         </div>
 
-        <div className="p-3 border">
-          <p className="text-xs text-gray-400">Code</p>
-          <p className="mt-1 truncate text-sm font-medium text-gray-800">
-            {product.code}
-          </p>
+        <div>
+          <div className="p-2 border">
+            <p className="text-xs text-gray-400">Code</p>
+            <p className="mt-1 truncate text-sm font-medium text-gray-800">
+              {product.code}
+            </p>
+          </div>
+          <div className="p-2 border">
+            <p className="text-xs text-gray-400">Alert Value</p>
+            <p className="mt-1 truncate text-sm font-medium text-gray-800">
+              {product.alertValue}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -112,3 +142,27 @@ const ProductCard = ({ product }: { product: Product }) => {
 };
 
 export default ProductCard;
+
+export function EnterSubmitForm({
+  children,
+  action,
+  className,
+}: {
+  children: React.ReactNode;
+  action: (formData: FormData) => void;
+  className?: string;
+}) {
+  return (
+    <form
+      action={action}
+      className={className}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.currentTarget.requestSubmit();
+        }
+      }}
+    >
+      {children}
+    </form>
+  );
+}

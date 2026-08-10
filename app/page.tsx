@@ -92,6 +92,12 @@ const Page = () => {
             ))}
           </div>
           <Link
+            href="/mega-price-updater"
+            className="absolute -top-5 right-60 font-semibold text-lg"
+          >
+            Price Updater
+          </Link>
+          <Link
             href="/manage"
             className="absolute -top-5 right-10 font-semibold text-lg"
           >

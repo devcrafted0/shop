@@ -29,6 +29,7 @@ interface ProductRow {
   type: string;
   actualPrice: number;
   triggerRef: React.RefObject<HTMLButtonElement | null>;
+  product: string;
 }
 
 const emptyRow = (): ProductRow => ({
@@ -43,6 +44,7 @@ const emptyRow = (): ProductRow => ({
   company: "",
   type: "",
   triggerRef: React.createRef<HTMLButtonElement>(),
+  product: "",
 });
 
 function Invoice() {
@@ -108,6 +110,7 @@ function Invoice() {
               actualPrice: product.actualPrice,
               company: product.company,
               type: product.type,
+              product: product.product,
             }
           : r,
       ),
@@ -183,6 +186,7 @@ function Invoice() {
               unitPrice,
               totalPrice,
               actualPrice,
+              product,
             }) => ({
               id: productId,
               name,
@@ -193,6 +197,7 @@ function Invoice() {
               type,
               totalPrice,
               actualPrice,
+              product,
             }),
           ),
           sellPrice,

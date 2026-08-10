@@ -247,7 +247,7 @@ const Page = async ({
           </section>
         </div>
 
-        <form method="GET">
+        <form method="GET" className="absolute top-10 right-10">
           {" "}
           <div>
             {" "}
@@ -262,7 +262,12 @@ const Page = async ({
           <button type="submit"> Search </button>{" "}
         </form>
 
-        <Link href="/company-payment-history">Reset</Link>
+        <Link
+          href="/company-payment-history"
+          className="absolute top-30 right-10"
+        >
+          Reset
+        </Link>
       </main>
     </div>
   );
